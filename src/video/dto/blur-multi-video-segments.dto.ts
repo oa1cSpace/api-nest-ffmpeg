@@ -1,7 +1,12 @@
-import { IsArray, IsNumber } from 'class-validator';
+import { IsArray, ValidateNested } from 'class-validator';
+
+class TimeLineDto {
+  start: number;
+  end: number;
+}
 
 export class BlurMultiVideoSegmentsDto {
   @IsArray()
-  @IsNumber({}, {each: true})
-  blur_segments: number[];
+  @ValidateNested({ each: true })
+  blur_segments: [];
 }
