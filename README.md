@@ -83,6 +83,17 @@ $ sudo apt install ffmpeg
 $ ffmpeg -version
 ```
 
+##
+
+<p align="center">
+  <a href="https://swagger.io/specification/" target="blank"><img src="https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg" width="420" alt="Swagger Logo" /></a>
+</p>
+
+```
+http://localhost:7000/api/docs
+```
+
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
