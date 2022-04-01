@@ -1,28 +1,18 @@
 import ErrnoException = NodeJS.ErrnoException;
-import { deleteExistedFile } from './delete-existed-file';
+import { HttpException, HttpStatus } from '@nestjs/common';
 const fs = require('fs');
 
 export async function checkFileExistence(path: string) {
-  fs.access(path, fs.F_OK, (err: ErrnoException | null) => {
+  fs.access(path, fs.F_OK, async (err: ErrnoException | null) => {
     if (err) {
+      // DOES NOT EXIST
+      console.info(`🟠 Can't find the file ${ path } could be already deleted or not exists`);
       console.error(err);
-      return;
+      throw new HttpException('Forbidden', HttpStatus.NOT_FOUND);
     }
-    console.info(`🟠 File ${ path } EXISTS!`);
-
-    //if file exists - delete it:
-    // fs.unlink(path, (err: ErrnoException | null) => {
-    //   if (err) {
-    //     console.error(err);
-    //     return;
-    //   }
-    //   //file removed
-    //   console.info(`🟠 ${ path } 🎞️deleted 🔥`);
-    //   console.error(`🔵 ${ new Date() } Creating a new video... ⚙️⚙️`);
-    // });
-
-
-    deleteExistedFile(path);
-
+    else {
+      // EXISTS
+      console.info(`🟠 File ${ path } EXISTS! 👌`);
+    }
   });
 }

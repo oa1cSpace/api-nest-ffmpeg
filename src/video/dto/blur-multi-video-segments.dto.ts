@@ -1,4 +1,4 @@
-import { IsArray, ValidateNested } from 'class-validator';
+import { IsArray, IsString, ValidateNested } from 'class-validator';
 
 class TimeLineDto {
   start: number;
@@ -8,5 +8,11 @@ class TimeLineDto {
 export class BlurMultiVideoSegmentsDto {
   @IsArray()
   @ValidateNested({ each: true })
-  blur_segments: [];
+  segments: [];
+
+  @IsString()
+  original_filename: string;
+
+  @IsString()
+  result_filename: string;
 }
